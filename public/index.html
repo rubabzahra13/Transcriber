@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Video Transcriber</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="/static/style.css" />
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <h1 class="title">Video Transcriber</h1>
+      <p class="tagline">Upload a video. Get the transcript.</p>
+    </header>
+
+    <main class="main">
+      <section class="upload-section" id="uploadSection">
+        <div class="dropzone" id="dropzone" role="button" tabindex="0">
+          <input type="file" id="fileInput" accept=".mp4,.webm,.mov,.avi,.mkv,.m4v" hidden />
+          <div class="dropzone-inner">
+            <svg class="dropzone-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+              <path d="M4 14.899A7 7 0 1 1 15.71 8h1.79a4.5 4.5 0 0 1 2.5 8.242" />
+              <path d="M12 12v9" />
+              <path d="m16 16-4-4-4 4" />
+            </svg>
+            <p class="dropzone-text">Drop your video here</p>
+            <p class="dropzone-sub">or click to browse</p>
+            <p class="dropzone-formats">MP4, WebM, MOV, AVI, MKV, M4V — up to 500 MB</p>
+          </div>
+        </div>
+        <label class="save-option">
+          <input type="checkbox" id="saveToFile" checked />
+          <span>Save transcript to <code>transcripts/</code> folder</span>
+        </label>
+      </section>
+
+      <section class="progress-section hidden" id="progressSection">
+        <div class="progress-card">
+          <div class="spinner" aria-hidden="true"></div>
+          <p class="progress-title">Transcribing…</p>
+          <p class="progress-filename" id="progressFilename"></p>
+          <p class="progress-hint">This may take a minute for longer videos.</p>
+        </div>
+      </section>
+
+      <section class="result-section hidden" id="resultSection">
+        <div class="result-header">
+          <h2 class="result-title">Transcript</h2>
+          <button type="button" class="btn btn-copy" id="copyBtn">Copy</button>
+        </div>
+        <div class="transcript" id="transcript" role="article"></div>
+      </section>
+
+      <section class="error-section hidden" id="errorSection">
+        <div class="error-card">
+          <p class="error-title">Something went wrong</p>
+          <p class="error-message" id="errorMessage"></p>
+          <button type="button" class="btn btn-secondary" id="dismissError">Try again</button>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <p>Powered by Whisper · Transcription only</p>
+    </footer>
+  </div>
+  <script src="/static/app.js"></script>
+</body>
+</html>
